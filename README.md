@@ -38,11 +38,6 @@ This branch contains a high-level automation framework using **Java** and **Cucu
 2.  **Organize the Files:** Make sure `LoginPage.java` is in the `src/test/java/pages` folder and `LoginSteps.java` is in `src/test/java/steps`.
 3.  **Tags:** In your `TestRunner`, the tag `@001_Login_StandardUser` must exist exactly as written at the top of your `.feature` file.
 
-
-With this structure, you demonstrate proficiency in **Python (Robot and Pytest)** and **Java (Cucumber/BDD)**. This puts you at a **QA Fullstack** level, ready for any technical challenge.
-
-**Congratulations on the project! Would you like a final review of any of the files?**
-
 Commands to Run:
 
 Run all tests:
