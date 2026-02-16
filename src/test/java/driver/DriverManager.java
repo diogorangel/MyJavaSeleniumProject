@@ -1,7 +1,5 @@
 package driver;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -17,10 +15,13 @@ public class DriverManager {
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            WebDriverManager.chromedriver().setup();
+            // Selenium 4.6+ automatically handles driver binaries via Selenium Manager.
+            // No need for WebDriverManager.chromedriver().setup() anymore.
+            
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--remote-allow-origins=*");
             options.addArguments("--start-maximized");
+
             driver = new ChromeDriver(options);
         }
         return driver;
@@ -32,6 +33,7 @@ public class DriverManager {
             driver = null;
         }
     }
+
     public static void waitSeconds(int seconds) {
         try {
             // Multiplicamos por 1000 porque o Java conta em milissegundos
@@ -42,9 +44,10 @@ public class DriverManager {
             System.err.println("Erro durante a espera: " + e.getMessage());
         }
     }
+
     // Screenshot method
     public static void takeScreenshot(String name) throws IOException {
-        File srcFile = ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.FILE);
+        File srcFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(srcFile, new File("evidence/" + name + ".png"));
     }
 }

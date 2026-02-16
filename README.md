@@ -23,8 +23,13 @@ This branch contains a high-level automation framework using **Java** and **Cucu
    mvn clean test
    ```
 3. Run specific tags:
-   mvn test -Dcucumber.filter.tags="@001_Login_StandardUser"
-
+   mvn test "-Dcucumber.filter.tags="@001_Login_StandardUser"
+   
+4. Examples : 
+   Terminal,Format Needed
+   PowerShell (VS Code): mvn test "-Dproperty.name=value"
+   CMD (Command Prompt): mvn test -Dproperty.name=value
+   Git Bash / Linux: mvn test -Dproperty.name=@tag
 ---
 
 ### ✅ Final Checklist for Success:
