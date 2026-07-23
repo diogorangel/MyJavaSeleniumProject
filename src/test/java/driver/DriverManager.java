@@ -1,8 +1,8 @@
 package driver;
-
+// Selenium 4.6+ automatically handles driver binaries via Selenium Manager.
+// No need for WebDriverManager.chromedriver().setup() anymore.
 import java.io.File;
 import java.io.IOException;
-
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -15,8 +15,6 @@ public class DriverManager {
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            // Selenium 4.6+ automatically handles driver binaries via Selenium Manager.
-            // No need for WebDriverManager.chromedriver().setup() anymore.
             
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--remote-allow-origins=*");
@@ -36,16 +34,13 @@ public class DriverManager {
 
     public static void waitSeconds(int seconds) {
         try {
-            // Multiplicamos por 1000 porque o Java conta em milissegundos
             Thread.sleep(seconds * 1000L);
         } catch (InterruptedException e) {
-            // Caso ocorra um erro na interrupção da thread
             Thread.currentThread().interrupt();
             System.err.println("Erro durante a espera: " + e.getMessage());
         }
     }
 
-    // Screenshot method
     public static void takeScreenshot(String name) throws IOException {
         File srcFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(srcFile, new File("evidence/" + name + ".png"));
